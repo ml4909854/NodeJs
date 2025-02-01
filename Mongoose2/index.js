@@ -4,6 +4,8 @@ const ConnectDB = require("./config/db.js");
 const userRouter = require("./controller/userController.js");
 const profileRouter = require("./controller/profileController.js");
 const productRouter = require("./controller/productController.js")
+const studentRouter = require("./controller/studentController.js")
+const courseRouter = require("./controller/courseController.js")
 // Middleware to parse JSON bodies
 app.use(express.json({ limit: '10mb' }));
 
@@ -11,12 +13,14 @@ app.use(express.json({ limit: '10mb' }));
 app.use("/user", userRouter);
 app.use("/profile", profileRouter);
 app.use("/product" ,productRouter)
+app.use("/student" ,studentRouter )
+app.use("/course" , courseRouter)
 
 // Error-handling middleware
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).json({ message: "Something went wrong!", error: err.message });
-});
+// app.use((err, req, res, next) => {
+//   =
+//   res.status(500).json({ message: "Something went wrong!", error: err.message });
+// });
 
 // Start the server
 const PORT = 8080;
