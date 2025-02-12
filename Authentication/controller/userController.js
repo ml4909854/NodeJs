@@ -30,7 +30,7 @@ router.post("/register", async (req, res) => {
 
 router.post("/login", async (req, res) => {
   try {
-    const {name, email, password } = req.body;
+    const {email, password} = req.body;
     const User = await UserModel.findOne({ email });
 
     if (!User) {
@@ -41,7 +41,7 @@ router.post("/login", async (req, res) => {
     if (!comparePassword) {
         return res.status(401).json({ message: "Your password is wrong. Check your password." });
       }
-    const token = jwt.sign({name ,email , randomMessage:"Hi Iam mahesh"} , "masai")
+    const token = jwt.sign({name:User.name ,email , randomMessage:"Hi Iam mahesh" , role:User.role} , "masai")
     res.status(200).json({ message: `${User.name} is logged sucessfully`  , token:token});
   } catch (err) {
     res.status(404).json({ message: "please register first" });

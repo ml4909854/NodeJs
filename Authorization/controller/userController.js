@@ -40,7 +40,7 @@ router.post("/login", async (req, res) => {
 
     const acessToken = jwt.sign(
       { email: User.email, role: User.role, random: "Hi iam from User" },
-      "acessMasai" ,{expiresIn:"20s"}
+      "acessMasai" ,{expiresIn:"20m"}
     );
     const refreshToken = jwt.sign(
       { email: User.email, role: User.role, random: "Hi iam from User" },

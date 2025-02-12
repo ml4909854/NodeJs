@@ -9,6 +9,8 @@ const isAuthenticated = (req ,res ,next)=>{
         res.status(401).send("Your are loged out! please login again to get a token")
         }
         const decoded = jwt.verify(token , "acessMasai")
+        console.log(decoded)
+        console.log(decoded._id)
         req.user = decoded
         next()
     } catch (error) {
